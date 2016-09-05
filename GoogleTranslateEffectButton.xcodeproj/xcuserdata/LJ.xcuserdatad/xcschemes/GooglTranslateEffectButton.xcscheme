@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A2B23561D7D63C4006AFAE7"
-               BuildableName = "GooglTranslateEffectButton.app"
-               BlueprintName = "GooglTranslateEffectButton"
-               ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+               BuildableName = "GoogleTranslateEffectButton.app"
+               BlueprintName = "GoogleTranslateEffectButton"
+               ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A2B236F1D7D63C4006AFAE7"
-               BuildableName = "GooglTranslateEffectButtonTests.xctest"
-               BlueprintName = "GooglTranslateEffectButtonTests"
-               ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+               BuildableName = "GoogleTranslateEffectButton.xctest"
+               BlueprintName = "GoogleTranslateEffectButtonTests"
+               ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A2B237A1D7D63C4006AFAE7"
-               BuildableName = "GooglTranslateEffectButtonUITests.xctest"
-               BlueprintName = "GooglTranslateEffectButtonUITests"
-               ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+               BuildableName = "GoogleTranslateEffectButton.xctest"
+               BlueprintName = "GoogleTranslateEffectButtonUITests"
+               ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A2B23561D7D63C4006AFAE7"
-            BuildableName = "GooglTranslateEffectButton.app"
-            BlueprintName = "GooglTranslateEffectButton"
-            ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+            BuildableName = "GoogleTranslateEffectButton.app"
+            BlueprintName = "GoogleTranslateEffectButton"
+            ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A2B23561D7D63C4006AFAE7"
-            BuildableName = "GooglTranslateEffectButton.app"
-            BlueprintName = "GooglTranslateEffectButton"
-            ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+            BuildableName = "GoogleTranslateEffectButton.app"
+            BlueprintName = "GoogleTranslateEffectButton"
+            ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A2B23561D7D63C4006AFAE7"
-            BuildableName = "GooglTranslateEffectButton.app"
-            BlueprintName = "GooglTranslateEffectButton"
-            ReferencedContainer = "container:GooglTranslateEffectButton.xcodeproj">
+            BuildableName = "GoogleTranslateEffectButton.app"
+            BlueprintName = "GoogleTranslateEffectButton"
+            ReferencedContainer = "container:GoogleTranslateEffectButton.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

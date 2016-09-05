@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2A2B23571D7D63C4006AFAE7 /* GooglTranslateEffectButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GooglTranslateEffectButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A2B23571D7D63C4006AFAE7 /* GoogleTranslateEffectButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleTranslateEffectButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2B235B1D7D63C4006AFAE7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A2B235D1D7D63C4006AFAE7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2A2B235E1D7D63C4006AFAE7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -49,10 +49,10 @@
 		2A2B23661D7D63C4006AFAE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A2B23691D7D63C4006AFAE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A2B236B1D7D63C4006AFAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A2B23701D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GooglTranslateEffectButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A2B23701D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleTranslateEffectButton.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2B23741D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GooglTranslateEffectButtonTests.m; sourceTree = "<group>"; };
 		2A2B23761D7D63C4006AFAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A2B237B1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GooglTranslateEffectButtonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A2B237B1D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleTranslateEffectButton.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2B237F1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GooglTranslateEffectButtonUITests.m; sourceTree = "<group>"; };
 		2A2B23811D7D63C4006AFAE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A2B238E1D7D640A006AFAE7 /* LJButton_Google.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJButton_Google.h; sourceTree = "<group>"; };
@@ -102,9 +102,9 @@
 		2A2B23581D7D63C4006AFAE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A2B23571D7D63C4006AFAE7 /* GooglTranslateEffectButton.app */,
-				2A2B23701D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests.xctest */,
-				2A2B237B1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests.xctest */,
+				2A2B23571D7D63C4006AFAE7 /* GoogleTranslateEffectButton.app */,
+				2A2B23701D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */,
+				2A2B237B1D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,9 +169,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2A2B23561D7D63C4006AFAE7 /* GooglTranslateEffectButton */ = {
+		2A2B23561D7D63C4006AFAE7 /* GoogleTranslateEffectButton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A2B23841D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButton" */;
+			buildConfigurationList = 2A2B23841D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButton" */;
 			buildPhases = (
 				2A2B23531D7D63C4006AFAE7 /* Sources */,
 				2A2B23541D7D63C4006AFAE7 /* Frameworks */,
@@ -181,14 +181,14 @@
 			);
 			dependencies = (
 			);
-			name = GooglTranslateEffectButton;
+			name = GoogleTranslateEffectButton;
 			productName = GooglTranslateEffectButton;
-			productReference = 2A2B23571D7D63C4006AFAE7 /* GooglTranslateEffectButton.app */;
+			productReference = 2A2B23571D7D63C4006AFAE7 /* GoogleTranslateEffectButton.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2A2B236F1D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests */ = {
+		2A2B236F1D7D63C4006AFAE7 /* GoogleTranslateEffectButtonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A2B23871D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButtonTests" */;
+			buildConfigurationList = 2A2B23871D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButtonTests" */;
 			buildPhases = (
 				2A2B236C1D7D63C4006AFAE7 /* Sources */,
 				2A2B236D1D7D63C4006AFAE7 /* Frameworks */,
@@ -199,14 +199,14 @@
 			dependencies = (
 				2A2B23721D7D63C4006AFAE7 /* PBXTargetDependency */,
 			);
-			name = GooglTranslateEffectButtonTests;
+			name = GoogleTranslateEffectButtonTests;
 			productName = GooglTranslateEffectButtonTests;
-			productReference = 2A2B23701D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests.xctest */;
+			productReference = 2A2B23701D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2A2B237A1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests */ = {
+		2A2B237A1D7D63C4006AFAE7 /* GoogleTranslateEffectButtonUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A2B238A1D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButtonUITests" */;
+			buildConfigurationList = 2A2B238A1D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButtonUITests" */;
 			buildPhases = (
 				2A2B23771D7D63C4006AFAE7 /* Sources */,
 				2A2B23781D7D63C4006AFAE7 /* Frameworks */,
@@ -217,9 +217,9 @@
 			dependencies = (
 				2A2B237D1D7D63C4006AFAE7 /* PBXTargetDependency */,
 			);
-			name = GooglTranslateEffectButtonUITests;
+			name = GoogleTranslateEffectButtonUITests;
 			productName = GooglTranslateEffectButtonUITests;
-			productReference = 2A2B237B1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests.xctest */;
+			productReference = 2A2B237B1D7D63C4006AFAE7 /* GoogleTranslateEffectButton.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -244,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2A2B23521D7D63C4006AFAE7 /* Build configuration list for PBXProject "GooglTranslateEffectButton" */;
+			buildConfigurationList = 2A2B23521D7D63C4006AFAE7 /* Build configuration list for PBXProject "GoogleTranslateEffectButton" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -257,9 +257,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2A2B23561D7D63C4006AFAE7 /* GooglTranslateEffectButton */,
-				2A2B236F1D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests */,
-				2A2B237A1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests */,
+				2A2B23561D7D63C4006AFAE7 /* GoogleTranslateEffectButton */,
+				2A2B236F1D7D63C4006AFAE7 /* GoogleTranslateEffectButtonTests */,
+				2A2B237A1D7D63C4006AFAE7 /* GoogleTranslateEffectButtonUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,12 +327,12 @@
 /* Begin PBXTargetDependency section */
 		2A2B23721D7D63C4006AFAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2A2B23561D7D63C4006AFAE7 /* GooglTranslateEffectButton */;
+			target = 2A2B23561D7D63C4006AFAE7 /* GoogleTranslateEffectButton */;
 			targetProxy = 2A2B23711D7D63C4006AFAE7 /* PBXContainerItemProxy */;
 		};
 		2A2B237D1D7D63C4006AFAE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2A2B23561D7D63C4006AFAE7 /* GooglTranslateEffectButton */;
+			target = 2A2B23561D7D63C4006AFAE7 /* GoogleTranslateEffectButton */;
 			targetProxy = 2A2B237C1D7D63C4006AFAE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -446,7 +446,7 @@
 				INFOPLIST_FILE = GooglTranslateEffectButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButton;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
 			};
 			name = Debug;
 		};
@@ -457,7 +457,7 @@
 				INFOPLIST_FILE = GooglTranslateEffectButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButton;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
 			};
 			name = Release;
 		};
@@ -468,8 +468,8 @@
 				INFOPLIST_FILE = GooglTranslateEffectButtonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButtonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GooglTranslateEffectButton.app/GooglTranslateEffectButton";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoogleTranslateEffectButton.app/GoogleTranslateEffectButton";
 			};
 			name = Debug;
 		};
@@ -480,8 +480,8 @@
 				INFOPLIST_FILE = GooglTranslateEffectButtonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButtonTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GooglTranslateEffectButton.app/GooglTranslateEffectButton";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoogleTranslateEffectButton.app/GoogleTranslateEffectButton";
 			};
 			name = Release;
 		};
@@ -491,7 +491,7 @@
 				INFOPLIST_FILE = GooglTranslateEffectButtonUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButtonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
 				TEST_TARGET_NAME = GooglTranslateEffectButton;
 			};
 			name = Debug;
@@ -502,7 +502,7 @@
 				INFOPLIST_FILE = GooglTranslateEffectButtonUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButtonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GoogleTranslateEffectButton;
 				TEST_TARGET_NAME = GooglTranslateEffectButton;
 			};
 			name = Release;
@@ -510,7 +510,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A2B23521D7D63C4006AFAE7 /* Build configuration list for PBXProject "GooglTranslateEffectButton" */ = {
+		2A2B23521D7D63C4006AFAE7 /* Build configuration list for PBXProject "GoogleTranslateEffectButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A2B23821D7D63C4006AFAE7 /* Debug */,
@@ -519,29 +519,32 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A2B23841D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButton" */ = {
+		2A2B23841D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A2B23851D7D63C4006AFAE7 /* Debug */,
 				2A2B23861D7D63C4006AFAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2A2B23871D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButtonTests" */ = {
+		2A2B23871D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButtonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A2B23881D7D63C4006AFAE7 /* Debug */,
 				2A2B23891D7D63C4006AFAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2A2B238A1D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GooglTranslateEffectButtonUITests" */ = {
+		2A2B238A1D7D63C4006AFAE7 /* Build configuration list for PBXNativeTarget "GoogleTranslateEffectButtonUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A2B238B1D7D63C4006AFAE7 /* Debug */,
 				2A2B238C1D7D63C4006AFAE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
