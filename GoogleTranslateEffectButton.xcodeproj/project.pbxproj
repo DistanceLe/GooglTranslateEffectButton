@@ -233,6 +233,7 @@
 				TargetAttributes = {
 					2A2B23561D7D63C4006AFAE7 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KKHXU36BGT;
 					};
 					2A2B236F1D7D63C4006AFAE7 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -443,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KKHXU36BGT;
 				INFOPLIST_FILE = GooglTranslateEffectButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButton;
@@ -454,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KKHXU36BGT;
 				INFOPLIST_FILE = GooglTranslateEffectButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LJ.GooglTranslateEffectButton;
