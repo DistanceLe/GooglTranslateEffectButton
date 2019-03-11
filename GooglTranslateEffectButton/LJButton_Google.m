@@ -19,11 +19,13 @@
 
 @property(nonatomic, assign)CGPoint     currentTouchPoint;
 //@property(nonatomic, assign)BOOL        isTouchBegin;
-//@property(nonatomic, assign)BOOL        isTouchContinue;
+@property(nonatomic, assign)BOOL        isTouchContinue;
 @property(nonatomic, assign)BOOL        isOtherGesture;
 //@property(nonatomic, assign)NSInteger   animationCount;
 
 @property(nonatomic, strong)NSMutableDictionary* backLayersDic;
+@property(nonatomic, strong)NSMutableArray* animationsArray;
+@property(nonatomic, strong)NSMutableArray* backLayersArray;
 
 @end
 
@@ -52,6 +54,8 @@
     if (1) {
         if (!self.backLayersDic) {
             self.backLayersDic = [NSMutableDictionary dictionary];
+            self.animationsArray = [NSMutableArray array];
+            self.backLayersArray = [NSMutableArray array];
         }
         
         CALayer* backLayer=[CALayer layer];
@@ -82,8 +86,8 @@
         
         CAKeyframeAnimation* opacityAnimation=[CAKeyframeAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.duration=self.circleEffectTime;
-        opacityAnimation.values=@[@(0.9),@(0.8),@(0.65),@(0.5),@(0.45),@(0.3), @(0.1), @(0), @(0), @(0)];
-        opacityAnimation.keyTimes=@[@0.1,@0.2,@0.3,@0.4,@0.5,@0.6,@0.7, @0.8,@0.9, @1];
+        opacityAnimation.values=@[@(0.8), @(0.2), @(0.3)];
+        opacityAnimation.keyTimes=@[@0, @0.99, @1];
         opacityAnimation.fillMode=kCAFillModeForwards;
         opacityAnimation.removedOnCompletion=NO;
         [backLayer.mask addAnimation:opacityAnimation forKey:nil];
@@ -98,20 +102,38 @@
         keyAnimation.removedOnCompletion=NO;
         keyAnimation.delegate=self;
         [backLayer.mask addAnimation:keyAnimation forKey:nil];
-        [self.backLayersDic setObject:backLayer forKey:keyAnimation];
+//        [self.animationsArray addObject:keyAnimation];
+//        [self.backLayersDic setObject:backLayer forKey:keyAnimation];
+        [self.backLayersArray addObject:backLayer];
+        NSLog(@"开始==============");
     }
 }
 
 #pragma mark - ================ 动画代理 ==================
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
-        CALayer* backLayer = [self.backLayersDic objectForKey:anim];
+        NSLog(@"停止动画==============");
+        if (!self.backLayersArray.count || (self.backLayersArray.count == 1 && self.isTouchContinue)) {
+            return;
+        }
+        CALayer* backLayer = self.backLayersArray.firstObject;
         if (backLayer && backLayer.mask) {
             [backLayer.mask removeAllAnimations];
             backLayer.mask=nil;
             [backLayer removeFromSuperlayer];
-//            _isTouchBegin=NO;
-            [self.backLayersDic removeObjectForKey:anim];
+            [self.backLayersArray removeObject:backLayer];
+        }
+    }
+}
+-(void)customTrackingEnd{
+    NSLog(@"停止长按==============");
+    self.isTouchContinue = NO;
+    if (self.backLayersArray.count) {
+        for (CALayer* backLayer in self.backLayersArray) {
+            [backLayer.mask removeAllAnimations];
+            backLayer.mask=nil;
+            [backLayer removeFromSuperlayer];
+            [self.backLayersArray removeObject:backLayer];
         }
     }
 }
@@ -127,14 +149,16 @@
     return [super beginTrackingWithTouch:touch withEvent:event];
 }
 
-
-//-(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-//
-//    if (touch.view == self) {
-//        _isTouchContinue=YES;
-//        CGPoint point=[touch locationInView:self];
-//        CGFloat offset=70;
-//        if (point.x<-offset || point.x>self.lj_width+offset || point.y<-offset || point.y>self.lj_height+offset) {
+-(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+    
+    if (touch.view == self) {
+        NSLog(@"==============");
+        self.isTouchContinue=YES;
+        CGPoint point=[touch locationInView:self];
+        CGFloat offset=70;
+        if (point.x<-offset || point.x>self.lj_width+offset || point.y<-offset || point.y>self.lj_height+offset) {
+            
+            [self customTrackingEnd];
 //            self.isTouchBegin=NO;
 //            if (_backLayer.mask){
 //                [_backLayer.mask removeAllAnimations];
@@ -142,15 +166,15 @@
 //                [_backLayer removeFromSuperlayer];
 //                _animationCount=0;
 //            }
-//        }
-//    }
-//    return [super continueTrackingWithTouch:touch withEvent:event];
-//}
+        }
+    }
+    return [super continueTrackingWithTouch:touch withEvent:event];
+}
 
-//-(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-//
-//    if (touch.view == self) {
-//        _isTouchContinue=NO;
+-(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+
+    if (touch.view == self) {
+        [self customTrackingEnd];
 //        self.isTouchBegin=NO;
 //        if (_backLayer.mask && _animationCount<=0){
 //            [_backLayer.mask removeAllAnimations];
@@ -158,20 +182,20 @@
 //            [_backLayer removeFromSuperlayer];
 //            _animationCount=0;
 //        }
-//    }
-//    [super endTrackingWithTouch:touch withEvent:event];
-//}
+    }
+    [super endTrackingWithTouch:touch withEvent:event];
+}
 
-//-(void)cancelTrackingWithEvent:(UIEvent *)event{
+-(void)cancelTrackingWithEvent:(UIEvent *)event{
 //    self.isTouchBegin=NO;
-//    _isTouchContinue=NO;
+    [self customTrackingEnd];
 //    if (_backLayer.mask && _animationCount<=0){
 //        [_backLayer.mask removeAllAnimations];
 //        _backLayer.mask=nil;
 //        [_backLayer removeFromSuperlayer];
 //    }
-//    [super cancelTrackingWithEvent:event];
-//}
+    [super cancelTrackingWithEvent:event];
+}
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
