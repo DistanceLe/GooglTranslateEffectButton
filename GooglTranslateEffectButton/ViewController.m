@@ -21,19 +21,20 @@
     [super viewDidLoad];
     
     LJButton_Google* but1=[LJButton_Google buttonWithType:UIButtonTypeCustom];
-    but1.frame=CGRectMake(20, 50, 200, 100);
+    but1.frame=CGRectMake(10, 50, 300, 200);
     but1.backgroundColor=[[UIColor lightGrayColor]colorWithAlphaComponent:0.5];
     [but1 setTitle:@"firstButton" forState:UIControlStateNormal];
     [but1 addTargetClickHandler:^(UIButton *but, id obj) {
         NSLog(@"..%@", but.titleLabel.text);
     }];
-    
-    but1.circleEffectColor=[UIColor redColor];
+    but1.circleEffectTime = 2;
+    but1.beginRadius = 2;
+    but1.circleEffectColor = [UIColor redColor];
     [self.view addSubview:but1];
     
     
     LJButton_Google* but2=[LJButton_Google buttonWithType:UIButtonTypeCustom];
-    but2.frame=CGRectMake(20, 170, 200, 100);
+    but2.frame=CGRectMake(10, 270, 300, 200);
     but2.backgroundColor=[[UIColor lightGrayColor]colorWithAlphaComponent:0.5];
     [but2 setTitle:@"secondButton" forState:UIControlStateNormal];
     [but2 addTargetClickHandler:^(UIButton *but, id obj) {

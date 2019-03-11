@@ -9,19 +9,17 @@
 #import "LJButton_Google.h"
 #import "UIView+LJ.h"
 
-#define Radius      20
+#define Radius      (_beginRadius > 0 ? _beginRadius : 15)
 #define kRGBColor(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 
 @interface LJButton_Google ()<CAAnimationDelegate>
 
-//@property(nonatomic, strong)CALayer*backLayer;
-
 @property(nonatomic, assign)CGPoint     currentTouchPoint;
-//@property(nonatomic, assign)BOOL        isTouchBegin;
+@property(nonatomic, assign)BOOL        isTouchBegin;
 @property(nonatomic, assign)BOOL        isTouchContinue;
 @property(nonatomic, assign)BOOL        isOtherGesture;
-//@property(nonatomic, assign)NSInteger   animationCount;
+@property(nonatomic, assign)double      touchBeginTime;
 
 @property(nonatomic, strong)NSMutableDictionary* backLayersDic;
 @property(nonatomic, strong)NSMutableArray* animationsArray;
@@ -62,7 +60,6 @@
         backLayer.backgroundColor=self.circleEffectColor.CGColor;
         backLayer.frame=self.bounds;
         [self.layer insertSublayer:backLayer atIndex:0];
-        //[self.layer addSublayer:_backLayer];
         
         CALayer* maskLayer=[CALayer layer];
         maskLayer.contents=(id)[self getImageForColor].CGImage;
@@ -74,8 +71,6 @@
         
         CGFloat radius=sqrt(pow(MAX(_currentTouchPoint.x, self.lj_width-_currentTouchPoint.x), 2)+
                             pow(MAX(_currentTouchPoint.y, self.lj_height-_currentTouchPoint.y), 2));
-        radius += 4;
-//        _animationCount++;
         CAKeyframeAnimation* cornerAnimation=[CAKeyframeAnimation animationWithKeyPath:@"cornerRadius"];
         cornerAnimation.duration=self.circleEffectTime;
         cornerAnimation.values=@[@(Radius), @(radius)];
@@ -95,17 +90,13 @@
         CAKeyframeAnimation* keyAnimation=[CAKeyframeAnimation animationWithKeyPath:@"bounds"];
         keyAnimation.duration=self.circleEffectTime;
         keyAnimation.values=@[[NSValue valueWithCGRect:CGRectMake(0, 0, Radius*2, Radius*2)],
-//                              [NSValue valueWithCGRect:CGRectMake(0, 0, radius*2-2, radius*2-2)],
                               [NSValue valueWithCGRect:CGRectMake(0, 0, radius*2, radius*2)]];
-        keyAnimation.keyTimes=@[@0,  @1];
+        keyAnimation.keyTimes=@[@0, @1];
         keyAnimation.fillMode=kCAFillModeForwards;
         keyAnimation.removedOnCompletion=NO;
         keyAnimation.delegate=self;
         [backLayer.mask addAnimation:keyAnimation forKey:nil];
-//        [self.animationsArray addObject:keyAnimation];
-//        [self.backLayersDic setObject:backLayer forKey:keyAnimation];
         [self.backLayersArray addObject:backLayer];
-        NSLog(@"开始==============");
     }
 }
 
@@ -113,7 +104,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
         NSLog(@"停止动画==============");
-        if (!self.backLayersArray.count || (self.backLayersArray.count == 1 && self.isTouchContinue)) {
+        if (!self.backLayersArray.count || (self.backLayersArray.count == 1 && self.isTouchBegin)) {
             return;
         }
         CALayer* backLayer = self.backLayersArray.firstObject;
@@ -126,8 +117,12 @@
     }
 }
 -(void)customTrackingEnd{
-    NSLog(@"停止长按==============");
+    self.isTouchBegin=NO;
     self.isTouchContinue = NO;
+    double endTouchTime = [[NSDate date]timeIntervalSince1970];
+    if ((endTouchTime - self.touchBeginTime) < self.circleEffectTime) {
+        return;
+    }
     if (self.backLayersArray.count) {
         for (CALayer* backLayer in self.backLayersArray) {
             [backLayer.mask removeAllAnimations];
@@ -142,7 +137,8 @@
 -(BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     if (touch.view == self && !self.isOtherGesture) {
         self.currentTouchPoint=[touch locationInView:self];
-//        self.isTouchBegin=YES;
+        self.isTouchBegin=YES;
+        self.touchBeginTime = [[NSDate date]timeIntervalSince1970];
         //DLog(@"😝开始动画");
         [self beginAnimation];
     }
@@ -159,13 +155,6 @@
         if (point.x<-offset || point.x>self.lj_width+offset || point.y<-offset || point.y>self.lj_height+offset) {
             
             [self customTrackingEnd];
-//            self.isTouchBegin=NO;
-//            if (_backLayer.mask){
-//                [_backLayer.mask removeAllAnimations];
-//                _backLayer.mask=nil;
-//                [_backLayer removeFromSuperlayer];
-//                _animationCount=0;
-//            }
         }
     }
     return [super continueTrackingWithTouch:touch withEvent:event];
@@ -175,25 +164,12 @@
 
     if (touch.view == self) {
         [self customTrackingEnd];
-//        self.isTouchBegin=NO;
-//        if (_backLayer.mask && _animationCount<=0){
-//            [_backLayer.mask removeAllAnimations];
-//            _backLayer.mask=nil;
-//            [_backLayer removeFromSuperlayer];
-//            _animationCount=0;
-//        }
     }
     [super endTrackingWithTouch:touch withEvent:event];
 }
 
 -(void)cancelTrackingWithEvent:(UIEvent *)event{
-//    self.isTouchBegin=NO;
     [self customTrackingEnd];
-//    if (_backLayer.mask && _animationCount<=0){
-//        [_backLayer.mask removeAllAnimations];
-//        _backLayer.mask=nil;
-//        [_backLayer removeFromSuperlayer];
-//    }
     [super cancelTrackingWithEvent:event];
 }
 
