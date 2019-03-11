@@ -15,12 +15,15 @@
 
 @interface LJButton_Google ()<CAAnimationDelegate>
 
-@property(nonatomic, strong)CALayer*backLayer;
+//@property(nonatomic, strong)CALayer*backLayer;
 
 @property(nonatomic, assign)CGPoint     currentTouchPoint;
-@property(nonatomic, assign)BOOL        isTouchBegin;
-@property(nonatomic, assign)BOOL        isTouchContinue;
-@property(nonatomic, assign)NSInteger   animationCount;
+//@property(nonatomic, assign)BOOL        isTouchBegin;
+//@property(nonatomic, assign)BOOL        isTouchContinue;
+@property(nonatomic, assign)BOOL        isOtherGesture;
+//@property(nonatomic, assign)NSInteger   animationCount;
+
+@property(nonatomic, strong)NSMutableDictionary* backLayersDic;
 
 @end
 
@@ -28,7 +31,7 @@
 
 -(UIColor *)circleEffectColor{
     if (!_circleEffectColor) {
-        _circleEffectColor=kRGBColor(204, 156, 74, 0.5);
+        _circleEffectColor=[UIColor whiteColor];
     }
     return _circleEffectColor;
 }
@@ -41,116 +44,148 @@
 }
 
 -(void)drawRect:(CGRect)rect{
+    
+}
+
+-(void)beginAnimation{
     [self.circleEffectColor setFill];
-    if (_isTouchBegin) {
-        if (_backLayer.mask){
-            _backLayer.mask.position=_currentTouchPoint;
-            
-        }else{
-            _backLayer=[CALayer layer];
-            _backLayer.backgroundColor=self.circleEffectColor.CGColor;
-            _backLayer.frame=self.bounds;
-            [self.layer insertSublayer:_backLayer atIndex:0];
-            //[self.layer addSublayer:_backLayer];
-            
-            CALayer* maskLayer=[CALayer layer];
-            maskLayer.contents=(id)[self getImageForColor].CGImage;
-            maskLayer.bounds=self.bounds;
-            maskLayer.position=_currentTouchPoint;
-            maskLayer.masksToBounds=YES;
-            _backLayer.mask=maskLayer;
+    if (1) {
+        if (!self.backLayersDic) {
+            self.backLayersDic = [NSMutableDictionary dictionary];
         }
+        
+        CALayer* backLayer=[CALayer layer];
+        backLayer.backgroundColor=self.circleEffectColor.CGColor;
+        backLayer.frame=self.bounds;
+        [self.layer insertSublayer:backLayer atIndex:0];
+        //[self.layer addSublayer:_backLayer];
+        
+        CALayer* maskLayer=[CALayer layer];
+        maskLayer.contents=(id)[self getImageForColor].CGImage;
+        maskLayer.bounds=self.bounds;
+        maskLayer.position=_currentTouchPoint;
+        maskLayer.masksToBounds=YES;
+        backLayer.mask=maskLayer;
+        
+        
         CGFloat radius=sqrt(pow(MAX(_currentTouchPoint.x, self.lj_width-_currentTouchPoint.x), 2)+
                             pow(MAX(_currentTouchPoint.y, self.lj_height-_currentTouchPoint.y), 2));
-        
-        _animationCount++;
+        radius += 4;
+//        _animationCount++;
         CAKeyframeAnimation* cornerAnimation=[CAKeyframeAnimation animationWithKeyPath:@"cornerRadius"];
         cornerAnimation.duration=self.circleEffectTime;
-        cornerAnimation.values=@[@(Radius), @(radius-1), @(radius)];
-        cornerAnimation.keyTimes=@[@0, @0.99, @1];
+        cornerAnimation.values=@[@(Radius), @(radius)];
+        cornerAnimation.keyTimes=@[@0, @1];
         cornerAnimation.fillMode=kCAFillModeForwards;
         cornerAnimation.removedOnCompletion=NO;
-        [_backLayer.mask addAnimation:cornerAnimation forKey:nil];
+        [backLayer.mask addAnimation:cornerAnimation forKey:nil];
         
         CAKeyframeAnimation* opacityAnimation=[CAKeyframeAnimation animationWithKeyPath:@"opacity"];
         opacityAnimation.duration=self.circleEffectTime;
-        opacityAnimation.values=@[@(0.8), @(0.2), @(0.5)];
-        opacityAnimation.keyTimes=@[@0, @0.99, @1];
+        opacityAnimation.values=@[@(0.9),@(0.8),@(0.65),@(0.5),@(0.45),@(0.3), @(0.1), @(0), @(0), @(0)];
+        opacityAnimation.keyTimes=@[@0.1,@0.2,@0.3,@0.4,@0.5,@0.6,@0.7, @0.8,@0.9, @1];
         opacityAnimation.fillMode=kCAFillModeForwards;
         opacityAnimation.removedOnCompletion=NO;
-        [_backLayer.mask addAnimation:opacityAnimation forKey:nil];
+        [backLayer.mask addAnimation:opacityAnimation forKey:nil];
         
         CAKeyframeAnimation* keyAnimation=[CAKeyframeAnimation animationWithKeyPath:@"bounds"];
         keyAnimation.duration=self.circleEffectTime;
         keyAnimation.values=@[[NSValue valueWithCGRect:CGRectMake(0, 0, Radius*2, Radius*2)],
-                              [NSValue valueWithCGRect:CGRectMake(0, 0, radius*2-2, radius*2-2)],
+//                              [NSValue valueWithCGRect:CGRectMake(0, 0, radius*2-2, radius*2-2)],
                               [NSValue valueWithCGRect:CGRectMake(0, 0, radius*2, radius*2)]];
-        keyAnimation.keyTimes=@[@0, @0.99, @1];
+        keyAnimation.keyTimes=@[@0,  @1];
         keyAnimation.fillMode=kCAFillModeForwards;
         keyAnimation.removedOnCompletion=NO;
         keyAnimation.delegate=self;
-        [_backLayer.mask addAnimation:keyAnimation forKey:nil];
+        [backLayer.mask addAnimation:keyAnimation forKey:nil];
+        [self.backLayersDic setObject:backLayer forKey:keyAnimation];
     }
 }
 
 #pragma mark - ================ 动画代理 ==================
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
-        _animationCount--;
-        if (_backLayer.mask && _animationCount<=0 && !_isTouchContinue && !_isTouchBegin) {
-            [_backLayer.mask removeAllAnimations];
-            _backLayer.mask=nil;
-            [_backLayer removeFromSuperlayer];
-            _isTouchBegin=NO;
+        CALayer* backLayer = [self.backLayersDic objectForKey:anim];
+        if (backLayer && backLayer.mask) {
+            [backLayer.mask removeAllAnimations];
+            backLayer.mask=nil;
+            [backLayer removeFromSuperlayer];
+//            _isTouchBegin=NO;
+            [self.backLayersDic removeObjectForKey:anim];
         }
     }
 }
 
 #pragma mark - ================ 触摸代理 ==================
 -(BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-    self.currentTouchPoint=[touch locationInView:self];
-    self.isTouchBegin=YES;
-    [self setNeedsDisplay];
-    return YES;
+    if (touch.view == self && !self.isOtherGesture) {
+        self.currentTouchPoint=[touch locationInView:self];
+//        self.isTouchBegin=YES;
+        //DLog(@"😝开始动画");
+        [self beginAnimation];
+    }
+    return [super beginTrackingWithTouch:touch withEvent:event];
 }
 
--(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-    
-    _isTouchContinue=YES;
-    CGPoint point=[touch locationInView:self];
-    CGFloat offset=70;
-    if (point.x<-offset || point.x>self.lj_width+offset || point.y<-offset || point.y>self.lj_height+offset) {
-        self.isTouchBegin=NO;
-        if (_backLayer.mask){
-            [_backLayer.mask removeAllAnimations];
-            _backLayer.mask=nil;
-            [_backLayer removeFromSuperlayer];
-            _animationCount=0;
-        }
+
+//-(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+//
+//    if (touch.view == self) {
+//        _isTouchContinue=YES;
+//        CGPoint point=[touch locationInView:self];
+//        CGFloat offset=70;
+//        if (point.x<-offset || point.x>self.lj_width+offset || point.y<-offset || point.y>self.lj_height+offset) {
+//            self.isTouchBegin=NO;
+//            if (_backLayer.mask){
+//                [_backLayer.mask removeAllAnimations];
+//                _backLayer.mask=nil;
+//                [_backLayer removeFromSuperlayer];
+//                _animationCount=0;
+//            }
+//        }
+//    }
+//    return [super continueTrackingWithTouch:touch withEvent:event];
+//}
+
+//-(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
+//
+//    if (touch.view == self) {
+//        _isTouchContinue=NO;
+//        self.isTouchBegin=NO;
+//        if (_backLayer.mask && _animationCount<=0){
+//            [_backLayer.mask removeAllAnimations];
+//            _backLayer.mask=nil;
+//            [_backLayer removeFromSuperlayer];
+//            _animationCount=0;
+//        }
+//    }
+//    [super endTrackingWithTouch:touch withEvent:event];
+//}
+
+//-(void)cancelTrackingWithEvent:(UIEvent *)event{
+//    self.isTouchBegin=NO;
+//    _isTouchContinue=NO;
+//    if (_backLayer.mask && _animationCount<=0){
+//        [_backLayer.mask removeAllAnimations];
+//        _backLayer.mask=nil;
+//        [_backLayer removeFromSuperlayer];
+//    }
+//    [super cancelTrackingWithEvent:event];
+//}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    //DLog(@"✅识别到手势：%@ , %@", gestureRecognizer, gestureRecognizer.view);
+    if (gestureRecognizer.view != self && ![gestureRecognizer.view isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    if (gestureRecognizer.view != self) {
+        self.isOtherGesture = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isOtherGesture = NO;
+        });
     }
     return YES;
-}
-
--(void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
-    
-    _isTouchContinue=NO;
-    self.isTouchBegin=NO;
-    if (_backLayer.mask && _animationCount<=0){
-        [_backLayer.mask removeAllAnimations];
-        _backLayer.mask=nil;
-        [_backLayer removeFromSuperlayer];
-        _animationCount=0;
-    }
-}
-
--(void)cancelTrackingWithEvent:(UIEvent *)event{
-    self.isTouchBegin=NO;
-    _isTouchContinue=NO;
-    if (_backLayer.mask && _animationCount<=0){
-        [_backLayer.mask removeAllAnimations];
-        _backLayer.mask=nil;
-        [_backLayer removeFromSuperlayer];
-    }
 }
 
 #pragma mark - ================ 生成一个蒙版图片 ==================

@@ -15,5 +15,6 @@
 
 /**  动画时间默认0.35秒 */
 @property(nonatomic, assign)CGFloat  circleEffectTime;
+@property(nonatomic, assign)CGFloat  beginRadius;
 
 @end
