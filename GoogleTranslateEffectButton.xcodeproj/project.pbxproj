@@ -18,6 +18,7 @@
 		2A2B23901D7D640A006AFAE7 /* LJButton_Google.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B238F1D7D640A006AFAE7 /* LJButton_Google.m */; };
 		2A2B23931D7D644F006AFAE7 /* UIView+LJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B23921D7D644F006AFAE7 /* UIView+LJ.m */; };
 		2A2B23961D7D64E2006AFAE7 /* UIButton+LJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B23951D7D64E2006AFAE7 /* UIButton+LJ.m */; };
+		6A081EA72248862600495D8C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A081EA62248862600495D8C /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		2A2B23921D7D644F006AFAE7 /* UIView+LJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LJ.m"; sourceTree = "<group>"; };
 		2A2B23941D7D64E2006AFAE7 /* UIButton+LJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LJ.h"; sourceTree = "<group>"; };
 		2A2B23951D7D64E2006AFAE7 /* UIButton+LJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LJ.m"; sourceTree = "<group>"; };
+		6A081EA62248862600495D8C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A081EA72248862600495D8C /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +97,7 @@
 				2A2B23731D7D63C4006AFAE7 /* GooglTranslateEffectButtonTests */,
 				2A2B237E1D7D63C4006AFAE7 /* GooglTranslateEffectButtonUITests */,
 				2A2B23581D7D63C4006AFAE7 /* Products */,
+				6A081EA52248862600495D8C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +165,14 @@
 				2A2B23951D7D64E2006AFAE7 /* UIButton+LJ.m */,
 			);
 			name = GoogleButton;
+			sourceTree = "<group>";
+		};
+		6A081EA52248862600495D8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A081EA62248862600495D8C /* MobileCoreServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

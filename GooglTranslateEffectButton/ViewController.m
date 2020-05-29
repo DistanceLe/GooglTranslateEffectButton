@@ -39,6 +39,19 @@
     [but2 setTitle:@"secondButton" forState:UIControlStateNormal];
     [but2 addTargetClickHandler:^(UIButton *but, id obj) {
         NSLog(@"..%@", but.titleLabel.text);
+        
+        
+//        NSURL *url = [NSURL URLWithString:@"prefs:root=General"];
+//        if ([[UIApplication sharedApplication] canOpenURL:url])
+//        {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        
+        NSURL*right_url=[NSURL URLWithString:@"prefs:root=General"];
+        Class LSApplicationWorkspace = NSClassFromString(@"LSApplicationWorkspace");
+        
+        [[LSApplicationWorkspace performSelector:@selector(defaultWorkspace)] performSelector:@selector(openSensitiveURL:withOptions:) withObject:right_url withObject:nil];
     }];
     
     but2.circleEffectColor=[UIColor greenColor];
